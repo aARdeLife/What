@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>360 Degree VR with Object Recognition</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <!-- Include TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <!-- Include the Coco SSD library for object detection -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    <style>
+      
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+#canvas-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  border: 1px solid #ccc;
+}
+
+    </style>
+  </head>
+  <body>
+    <button id="view360Button">Select 360 Image</button>
+    <input type="file" id="fileInput" style="display: none;" accept="image/*">
+    <div id="vrContainer" style="display: none;">
+      <a-scene embedded>
+        <a-sky id="image360" radius="10"></a-sky>
+        <a-entity id="recognitionBoxes"></a-entity>
+      </a-scene>
+    </div>
+    <script>
+      
+// Initialize TensorFlow and the Coco model here
+
+const video = document.getElementById('video');
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+
+// Add your object recognition logic here
+
+document.addEventListener("DOMContentLoaded", function () {
+  const button = document.getElementById("view360Button");
+  const fileInput = document.getElementById("fileInput");
+  const vrContainer = document.getElementById("vrContainer");
+  const image360 = document.getElementById("image360");
+
+  button.addEventListener("click", function () {
+    fileInput.click();  // Open file browser
+  });
+
+  fileInput.addEventListener("change", function () {
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      image360.setAttribute("src", e.target.result);
+      vrContainer.style.display = "block";
+      // Add code here to run object recognition on the uploaded image
+    };
+    reader.readAsDataURL(file);
+  });
+});
+
+    </script>
+  </body>
+</html>

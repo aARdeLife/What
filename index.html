@@ -38,7 +38,7 @@ canvas {
     <button id="view360Button">Select 360 Image</button>
     <input type="file" id="fileInput" style="display: none;" accept="image/*">
     <div id="vrContainer" style="display: none;">
-      <a-scene embedded xr-mode-ui="enabled: true;">
+      <a-scene embedded vr-mode-ui="enabled: true;">
         <a-sky id="image360" radius="10"></a-sky>
         <a-entity id="recognitionBoxes"></a-entity>
       </a-scene>
@@ -56,9 +56,19 @@ document.addEventListener("DOMContentLoaded", function () {
   const fileInput = document.getElementById("fileInput");
   const vrContainer = document.getElementById("vrContainer");
   const image360 = document.getElementById("image360");
+  const scene = document.querySelector('a-scene');
 
-  if (button && fileInput && vrContainer && image360) {
+  if (button && fileInput && vrContainer && image360 && scene) {
     console.log("All elements found");  // Debugging message
+
+    // Debugging for VR mode
+    scene.addEventListener('enter-vr', function () {
+      console.log('Entered VR');
+    });
+
+    scene.addEventListener('exit-vr', function () {
+      console.log('Exited VR');
+    });
 
     button.addEventListener("click", function () {
       console.log("Button clicked");  // Debugging message

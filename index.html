@@ -38,7 +38,7 @@ canvas {
     <button id="view360Button">Select 360 Image</button>
     <input type="file" id="fileInput" style="display: none;" accept="image/*">
     <div id="vrContainer" style="display: none;">
-      <a-scene embedded>
+      <a-scene embedded xr-mode-ui="enabled: true;">
         <a-sky id="image360" radius="10"></a-sky>
         <a-entity id="recognitionBoxes"></a-entity>
       </a-scene>

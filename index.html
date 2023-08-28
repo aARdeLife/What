@@ -47,32 +47,38 @@ canvas {
       
 // Initialize TensorFlow and the Coco model here
 
-const video = document.getElementById('video');
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-
-// Add your object recognition logic here
+console.log("JavaScript is running");  // Debugging message
 
 document.addEventListener("DOMContentLoaded", function () {
+  console.log("DOM is fully loaded");  // Debugging message
+
   const button = document.getElementById("view360Button");
   const fileInput = document.getElementById("fileInput");
   const vrContainer = document.getElementById("vrContainer");
   const image360 = document.getElementById("image360");
 
-  button.addEventListener("click", function () {
-    fileInput.click();  // Open file browser
-  });
+  if (button && fileInput && vrContainer && image360) {
+    console.log("All elements found");  // Debugging message
 
-  fileInput.addEventListener("change", function () {
-    const file = fileInput.files[0];
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      image360.setAttribute("src", e.target.result);
-      vrContainer.style.display = "block";
-      // Add code here to run object recognition on the uploaded image
-    };
-    reader.readAsDataURL(file);
-  });
+    button.addEventListener("click", function () {
+      console.log("Button clicked");  // Debugging message
+      fileInput.click();  // Open file browser
+    });
+
+    fileInput.addEventListener("change", function () {
+      console.log("File selected");  // Debugging message
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        image360.setAttribute("src", e.target.result);
+        vrContainer.style.display = "block";
+        // Add code here to run object recognition on the uploaded image
+      };
+      reader.readAsDataURL(file);
+    });
+  } else {
+    console.log("Some elements not found");  // Debugging message
+  }
 });
 
     </script>
